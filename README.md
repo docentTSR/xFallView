@@ -3,6 +3,11 @@ xFallView
 
 :ant:
 
+Tasks list
+----------
+- [ ] random direction rotate for target views;
+- [ ] views array for xFallView.
+
 License
 -------
 
