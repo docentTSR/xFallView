@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.docenttsr.views.xfallview.TestActivity"
+    android:background="@color/colorPrimary"
     >
 
-</android.support.constraint.ConstraintLayout>
+    <com.docenttsr.views.xfallview.XFallView
+        android:id="@+id/test_xfall_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:maxViewsCount="@integer/snowflakes_maxViewCount"
+        app:minVelocity="@integer/snowflakes_minVelocity"
+        app:maxVelocity="@integer/snowflakes_maxVelocity"
+        app:minAlpha="@integer/snowflakes_minAlpha"
+        app:maxAlpha="@integer/snowflakes_maxAlpha"
+        app:minScale="@dimen/snowflakes_minScale"
+        app:maxScale="@dimen/snowflakes_maxScale"
+        app:wind="low"
+        app:src="@drawable/ic_snowflake"
+        />
+
+    <!--<com.docenttsr.views.xfallview.XFallView-->
+        <!--android:id="@+id/test_xfall_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:maxViewsCount="@integer/currencies_maxViewCount"-->
+        <!--app:minVelocity="@integer/currencies_minVelocity"-->
+        <!--app:maxVelocity="@integer/currencies_maxVelocity"-->
+        <!--app:minAlpha="@integer/currencies_minAlpha"-->
+        <!--app:maxAlpha="@integer/currencies_maxAlpha"-->
+        <!--app:minScale="@dimen/currencies_minScale"-->
+        <!--app:maxScale="@dimen/currencies_maxScale"-->
+        <!--app:src="@drawable/ic_dollar_green"-->
+        <!--/>-->
+
+    <!--<com.docenttsr.views.xfallview.XFallView-->
+        <!--android:id="@+id/test_xfall_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:maxViewsCount="@integer/hearts_maxViewCount"-->
+        <!--app:minVelocity="@integer/hearts_minVelocity"-->
+        <!--app:maxVelocity="@integer/hearts_maxVelocity"-->
+        <!--app:minAlpha="@integer/hearts_minAlpha"-->
+        <!--app:maxAlpha="@integer/hearts_maxAlpha"-->
+        <!--app:minScale="@dimen/hearts_minScale"-->
+        <!--app:maxScale="@dimen/hearts_maxScale"-->
+        <!--app:src="@drawable/ic_heart"-->
+        <!--/>-->
+
+</FrameLayout>
