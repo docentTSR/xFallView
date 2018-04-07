@@ -281,6 +281,8 @@ public class XFallView extends View {
     public void stopFall() {
         setVisibility(INVISIBLE);
 
+        lastTimeMillis = INVALID_TIME;
+
         notifyCalculateThreadStop();
     }
 
