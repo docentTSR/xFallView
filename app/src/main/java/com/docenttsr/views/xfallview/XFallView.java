@@ -248,9 +248,15 @@ public class XFallView extends View {
     }
 
     public void startFall() {
-        generateXViews();
+        if (!isXFallInited()) {
+            generateXViews();
+        }
 
         setVisibility(VISIBLE);
+    }
+
+    private boolean isXFallInited() {
+        return !xViewsList.isEmpty();
     }
 
     private void generateXViews() {
