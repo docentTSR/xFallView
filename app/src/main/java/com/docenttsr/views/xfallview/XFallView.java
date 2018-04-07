@@ -41,6 +41,8 @@ public class XFallView extends View {
 
     private static final int DEFAULT_WIND = 0;
 
+    private static final int DEFAULT_ROTATE_OFF = 1;
+
     private static final float DEFAULT_MIN_SCALE = .5f;
     private static final float DEFAULT_MAX_SCALE = 1.2f;
 
@@ -73,6 +75,7 @@ public class XFallView extends View {
     private float wind;
     private float minScale;
     private float maxScale;
+    private boolean isRotateOff;
     private Bitmap xViewBitmap;
 
 
@@ -110,6 +113,13 @@ public class XFallView extends View {
 
         for (XView xView : xViewsList) {
             xViewMatrix.setTranslate(0, 0);
+
+            if (!isRotateOff) {
+                xViewMatrix.postRotate(
+                        xView.getRotateAngle(),
+                        xView.getPivotX(), xView.getPivotY()
+                );
+            }
 
             xViewMatrix.postScale(
                     xView.getScale(), xView.getScale(),
@@ -190,6 +200,8 @@ public class XFallView extends View {
             maxScale = DEFAULT_MAX_SCALE;
         }
 
+        isRotateOff = array.getInt(R.styleable.XFallView_rotate, DEFAULT_ROTATE_OFF) == 1;
+
         final int bitmapResId = array.getResourceId(R.styleable.XFallView_src, INVALID_RESOURCE_ID);
 
         if (bitmapResId != INVALID_RESOURCE_ID) {
@@ -229,9 +241,19 @@ public class XFallView extends View {
                         xView.setPosX(xViewNextPosX);
                         xView.setPosY(xViewNextPosY);
 
-                        if (isOutOfRange(xViewNextPosX, xViewNextPosY)) {
+                        if (isPositionsOutOfRange(xViewNextPosX, xViewNextPosY)) {
                             xView.setPosX(randomPositionX());
                             xView.setPosY(resetPositionY());
+                        }
+
+                        if (!isRotateOff) {
+                            if (!isRotateAngleOutOfRange(xView.getRotateAngle())) {
+                                resetRotateAngleToValidRange(xView);
+                            }
+
+                            xView.setRotateAngle(
+                                    xView.getRotateAngle() + 1
+                            );
                         }
                     }
                 }
@@ -242,9 +264,19 @@ public class XFallView extends View {
         };
     }
 
-    private boolean isOutOfRange(float x, float y) {
+    private boolean isPositionsOutOfRange(float x, float y) {
         return (x < -xViewBitmap.getWidth() || x > viewportWidth + xViewBitmap.getWidth())
                 || y > viewportHeight + xViewBitmap.getHeight();
+    }
+
+    private boolean isRotateAngleOutOfRange(int angle) {
+        return angle < 0 || angle > 360;
+    }
+
+    private void resetRotateAngleToValidRange(XView xView) {
+        xView.setRotateAngle(
+                xView.getRotateAngle() % 360
+        );
     }
 
     public void startFall() {
@@ -272,6 +304,7 @@ public class XFallView extends View {
                     .setVelocityY(randomVelocityY())
                     .setTransparency(randomTransparency())
                     .setScale(randomScale())
+                    .setRotateAngle(randomRotateAngle())
                     .create();
 
             xViewsList.add(xView);
@@ -313,12 +346,16 @@ public class XFallView extends View {
         );
     }
 
+    private float randomScale() {
+        return RandomUtil.nextFloat(minScale, maxScale);
+    }
+
     private int randomTransparency() {
         return RandomUtil.nextInt(minAlpha, maxAlpha) << 24;
     }
 
-    private float randomScale() {
-        return RandomUtil.nextFloat(minScale, maxScale);
+    private int randomRotateAngle() {
+        return RandomUtil.nextInt(0, 360);
     }
 
 }

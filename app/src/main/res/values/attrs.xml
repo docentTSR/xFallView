@@ -22,6 +22,11 @@
             <enum name="high" value="3" />
         </attr>
 
+        <attr name="rotate" format="enum">
+            <enum name="on" value="0" />
+            <enum name="off" value="1" />
+        </attr>
+
     </declare-styleable>
 
 </resources>

@@ -13,14 +13,17 @@ public class XView {
 
     private float scale;
 
+    private int rotateAngle;
+
     private int transparency;
 
     public XView(Builder builder) {
         posX = builder.posX;
         posY = builder.posY;
         velocityY = builder.velocityY;
-        transparency = builder.transparency;
         scale = builder.scale;
+        rotateAngle = builder.rotateAngle;
+        transparency = builder.transparency;
     }
 
     public float getPosX() {
@@ -71,6 +74,14 @@ public class XView {
         this.scale = scale;
     }
 
+    public int getRotateAngle() {
+        return rotateAngle;
+    }
+
+    public void setRotateAngle(int rotateAngle) {
+        this.rotateAngle = rotateAngle;
+    }
+
     public int getTransparency() {
         return transparency;
     }
@@ -91,6 +102,8 @@ public class XView {
         private float velocityY;
 
         private float scale;
+
+        private int rotateAngle;
 
         private int transparency;
 
@@ -121,6 +134,11 @@ public class XView {
 
         public Builder setScale(float scale) {
             this.scale = scale;
+            return this;
+        }
+
+        public Builder setRotateAngle(int rotateAngle) {
+            this.rotateAngle = rotateAngle;
             return this;
         }
 

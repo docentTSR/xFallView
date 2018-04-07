@@ -19,6 +19,7 @@
         app:minScale="@dimen/snowflakes_minScale"
         app:maxScale="@dimen/snowflakes_maxScale"
         app:wind="low"
+        app:rotate="on"
         app:src="@drawable/ic_snowflake"
         />
 
