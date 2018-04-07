@@ -5,8 +5,15 @@ xFallView
 
 Tasks list
 ----------
-- [ ] random direction rotate for target views;
-- [ ] views array for xFallView.
+- [x] :eyes: random alpha for xViews;
+- [x] :mag: random scale for xViews;
+- [x] :dash: wind for xViews;
+- [x] :cyclone: rotate for xViews;
+- [x] :triangular_ruler: random start rotate angle for xViews;
+- [ ] :bicyclist: random rotate velocity for xViews;
+- [ ] :arrows_counterclockwise: random rotate direction for xViews;
+- [ ] :sparkles: xViews array;
+- [ ] :arrow_up_down: direction for xViews.
 
 License
 -------
