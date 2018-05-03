@@ -12,7 +12,7 @@ Tasks list
 - [x] :triangular_ruler: random start rotate angle for xViews;
 - [ ] :bicyclist: random rotate velocity for xViews;
 - [ ] :arrows_counterclockwise: random rotate direction for xViews;
-- [ ] :sparkles: xViews array;
+- [ ] :sparkles: replace single drawable to drawable list for xViews;
 - [ ] :arrow_up_down: direction for xViews.
 
 License
