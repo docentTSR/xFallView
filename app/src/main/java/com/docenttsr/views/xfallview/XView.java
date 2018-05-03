@@ -17,13 +17,12 @@ public class XView {
 
     private int transparency;
 
-    public XView(Builder builder) {
-        posX = builder.posX;
-        posY = builder.posY;
-        velocityY = builder.velocityY;
-        scale = builder.scale;
-        rotateAngle = builder.rotateAngle;
-        transparency = builder.transparency;
+    public XView(float posX, float posY, float pivotX, float pivotY, float velocityY) {
+        this.posX = posX;
+        this.posY = posY;
+        this.pivotX = pivotX;
+        this.pivotY = pivotY;
+        this.velocityY = velocityY;
     }
 
     public float getPosX() {
@@ -88,68 +87,6 @@ public class XView {
 
     public void setTransparency(int transparency) {
         this.transparency = transparency;
-    }
-
-
-    public static class Builder {
-
-        private float posX;
-        private float posY;
-
-        private float pivotX;
-        private float pivotY;
-
-        private float velocityY;
-
-        private float scale;
-
-        private int rotateAngle;
-
-        private int transparency;
-
-        public Builder setPosX(float posX) {
-            this.posX = posX;
-            return this;
-        }
-
-        public Builder setPosY(float posY) {
-            this.posY = posY;
-            return this;
-        }
-
-        public Builder setPivotX(float pivotX) {
-            this.pivotX = pivotX;
-            return this;
-        }
-
-        public Builder setPivotY(float pivotY) {
-            this.pivotY = pivotY;
-            return this;
-        }
-
-        public Builder setVelocityY(float velocityY) {
-            this.velocityY = velocityY;
-            return this;
-        }
-
-        public Builder setScale(float scale) {
-            this.scale = scale;
-            return this;
-        }
-
-        public Builder setRotateAngle(int rotateAngle) {
-            this.rotateAngle = rotateAngle;
-            return this;
-        }
-
-        public Builder setTransparency(int transparency) {
-            this.transparency = transparency;
-            return this;
-        }
-
-        public XView create() {
-            return new XView(this);
-        }
     }
 
 }

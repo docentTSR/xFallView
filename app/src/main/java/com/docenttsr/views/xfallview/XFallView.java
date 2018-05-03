@@ -296,16 +296,17 @@ public class XFallView extends View {
         float pivotY = xViewBitmap.getHeight() / 2.f;
 
         for (int index = 0; index < maxViewsCount; index++) {
-            XView xView = new XView.Builder()
-                    .setPosX(randomPositionX())
-                    .setPosY(randomPositionY())
-                    .setPivotX(pivotX)
-                    .setPivotY(pivotY)
-                    .setVelocityY(randomVelocityY())
-                    .setTransparency(randomTransparency())
-                    .setScale(randomScale())
-                    .setRotateAngle(randomRotateAngle())
-                    .create();
+            XView xView = new XView(
+                    randomPositionX(),
+                    randomPositionY(),
+                    pivotX,
+                    pivotY,
+                    randomVelocityY()
+            );
+
+            xView.setTransparency(randomTransparency());
+            xView.setScale(randomScale());
+            xView.setRotateAngle(randomRotateAngle());
 
             xViewsList.add(xView);
         }
