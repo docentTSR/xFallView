@@ -10,9 +10,9 @@ Tasks list
 - [x] :dash: wind for xViews;
 - [x] :cyclone: rotate for xViews;
 - [x] :triangular_ruler: random start rotate angle for xViews;
+- [x] :sparkles: replace single drawable to drawable list for xViews;
 - [ ] :bicyclist: random rotate velocity for xViews;
 - [ ] :arrows_counterclockwise: random rotate direction for xViews;
-- [ ] :sparkles: replace single drawable to drawable list for xViews;
 - [ ] :arrow_up_down: direction for xViews.
 
 License
