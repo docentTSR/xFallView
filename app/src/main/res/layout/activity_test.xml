@@ -7,35 +7,36 @@
     android:background="@color/colorPrimary"
     >
 
-    <com.docenttsr.views.xfallview.XFallView
-        android:id="@+id/test_xfall_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:maxViewsCount="@integer/snowflakes_maxViewCount"
-        app:minVelocity="@integer/snowflakes_minVelocity"
-        app:maxVelocity="@integer/snowflakes_maxVelocity"
-        app:minAlpha="@integer/snowflakes_minAlpha"
-        app:maxAlpha="@integer/snowflakes_maxAlpha"
-        app:minScale="@dimen/snowflakes_minScale"
-        app:maxScale="@dimen/snowflakes_maxScale"
-        app:wind="low"
-        app:rotate="on"
-        app:src="@drawable/ic_snowflake"
-        />
-
     <!--<com.docenttsr.views.xfallview.XFallView-->
         <!--android:id="@+id/test_xfall_view"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
-        <!--app:maxViewsCount="@integer/currencies_maxViewCount"-->
-        <!--app:minVelocity="@integer/currencies_minVelocity"-->
-        <!--app:maxVelocity="@integer/currencies_maxVelocity"-->
-        <!--app:minAlpha="@integer/currencies_minAlpha"-->
-        <!--app:maxAlpha="@integer/currencies_maxAlpha"-->
-        <!--app:minScale="@dimen/currencies_minScale"-->
-        <!--app:maxScale="@dimen/currencies_maxScale"-->
-        <!--app:src="@drawable/ic_dollar_green"-->
+        <!--app:maxViewsCount="@integer/snowflakes_maxViewCount"-->
+        <!--app:minVelocity="@integer/snowflakes_minVelocity"-->
+        <!--app:maxVelocity="@integer/snowflakes_maxVelocity"-->
+        <!--app:minAlpha="@integer/snowflakes_minAlpha"-->
+        <!--app:maxAlpha="@integer/snowflakes_maxAlpha"-->
+        <!--app:minScale="@dimen/snowflakes_minScale"-->
+        <!--app:maxScale="@dimen/snowflakes_maxScale"-->
+        <!--app:wind="low"-->
+        <!--app:rotate="on"-->
+        <!--app:srcArray="@array/x_views_snowflake_array"-->
         <!--/>-->
+
+    <com.docenttsr.views.xfallview.XFallView
+        android:id="@+id/test_xfall_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:maxViewsCount="@integer/currencies_maxViewCount"
+        app:minVelocity="@integer/currencies_minVelocity"
+        app:maxVelocity="@integer/currencies_maxVelocity"
+        app:minAlpha="@integer/currencies_minAlpha"
+        app:maxAlpha="@integer/currencies_maxAlpha"
+        app:minScale="@dimen/currencies_minScale"
+        app:maxScale="@dimen/currencies_maxScale"
+        app:srcArray="@array/x_views_currency_array"
+        app:rotate="on"
+        />
 
     <!--<com.docenttsr.views.xfallview.XFallView-->
         <!--android:id="@+id/test_xfall_view"-->
@@ -48,7 +49,7 @@
         <!--app:maxAlpha="@integer/hearts_maxAlpha"-->
         <!--app:minScale="@dimen/hearts_minScale"-->
         <!--app:maxScale="@dimen/hearts_maxScale"-->
-        <!--app:src="@drawable/ic_heart"-->
+        <!--app:srcArray="@array/x_views_heart_array"-->
         <!--/>-->
 
 </FrameLayout>

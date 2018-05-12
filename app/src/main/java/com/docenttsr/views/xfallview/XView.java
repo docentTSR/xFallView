@@ -1,7 +1,12 @@
 package com.docenttsr.views.xfallview;
 
 
+import android.graphics.Bitmap;
+
+
 public class XView {
+
+    private Bitmap bitmap;
 
     private float posX;
     private float posY;
@@ -17,12 +22,17 @@ public class XView {
 
     private int transparency;
 
-    public XView(float posX, float posY, float pivotX, float pivotY, float velocityY) {
+    public XView(Bitmap bitmap, float posX, float posY, float pivotX, float pivotY, float velocityY) {
+        this.bitmap = bitmap;
         this.posX = posX;
         this.posY = posY;
         this.pivotX = pivotX;
         this.pivotY = pivotY;
         this.velocityY = velocityY;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
     public float getPosX() {

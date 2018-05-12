@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="x_views_snowflake_array">
+        <item>@drawable/ic_snowflake</item>
+    </array>
+
+    <array name="x_views_currency_array">
+        <item>@drawable/ic_dollar_green</item>
+        <item>@drawable/ic_euro_orange</item>
+        <item>@drawable/ic_rub_blue</item>
+    </array>
+
+    <array name="x_views_heart_array">
+        <item>@drawable/ic_heart</item>
+    </array>
+
+</resources>

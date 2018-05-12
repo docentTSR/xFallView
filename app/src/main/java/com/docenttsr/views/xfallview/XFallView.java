@@ -76,7 +76,7 @@ public class XFallView extends View {
     private float minScale;
     private float maxScale;
     private boolean isRotateOff;
-    private Bitmap xViewBitmap;
+    private List<Bitmap> xViewBitmapList;
 
 
     public XFallView(Context context, AttributeSet attrs) {
@@ -132,7 +132,7 @@ public class XFallView extends View {
 
             xViewPaint.setColor(xView.getTransparency());
 
-            canvas.drawBitmap(xViewBitmap, xViewMatrix, xViewPaint);
+            canvas.drawBitmap(xView.getBitmap(), xViewMatrix, xViewPaint);
         }
 
         calculatePositionsHandler.sendEmptyMessage(MSG_CALCULATE);
@@ -148,6 +148,10 @@ public class XFallView extends View {
     }
 
     private void init(AttributeSet attrs) {
+        if (isInEditMode()) {
+            return;
+        }
+
         initByAttr(attrs);
 
         lastTimeMillis = INVALID_TIME;
@@ -202,15 +206,34 @@ public class XFallView extends View {
 
         isRotateOff = array.getInt(R.styleable.XFallView_rotate, DEFAULT_ROTATE_OFF) == 1;
 
-        final int bitmapResId = array.getResourceId(R.styleable.XFallView_src, INVALID_RESOURCE_ID);
+        xViewBitmapList = new ArrayList<>();
+        final int bitmapArrayResId = array.getResourceId(R.styleable.XFallView_srcArray, INVALID_RESOURCE_ID);
 
-        if (bitmapResId != INVALID_RESOURCE_ID) {
-            xViewBitmap = BitmapFactory.decodeResource(
-                    getResources(), bitmapResId
-            );
+        if (bitmapArrayResId != INVALID_RESOURCE_ID) {
+            TypedArray bitmapResIdArray = getResources().obtainTypedArray(bitmapArrayResId);
+
+            int bitmapResId;
+
+            for (int i = 0; i < bitmapResIdArray.length(); i++) {
+                bitmapResId = bitmapResIdArray.getResourceId(i, INVALID_RESOURCE_ID);
+
+                if (bitmapResId != INVALID_RESOURCE_ID) {
+                    xViewBitmapList.add(
+                            BitmapFactory.decodeResource(
+                                    getResources(), bitmapResId
+                            )
+                    );
+                }
+            }
+
+            bitmapResIdArray.recycle();
+
+            if (xViewBitmapList.isEmpty()) {
+                throw new IllegalStateException("You must set valid 'app:srcArray' attribute for XFallView...");
+            }
 
         } else {
-            throw new IllegalStateException("You must set 'app:src' attribute for XFallView...");
+            throw new IllegalStateException("You must set 'app:srcArray' attribute for XFallView...");
         }
 
         array.recycle();
@@ -218,7 +241,7 @@ public class XFallView extends View {
 
     private void initCalculateThread() {
         calculatePositionThread = new HandlerThread(
-                CALCULATE_POSITIONS_THREAD_NAME + "-"+ String.valueOf(System.currentTimeMillis())
+                CALCULATE_POSITIONS_THREAD_NAME + "-" + String.valueOf(System.currentTimeMillis())
         );
         calculatePositionThread.start();
     }
@@ -241,9 +264,14 @@ public class XFallView extends View {
                         xView.setPosX(xViewNextPosX);
                         xView.setPosY(xViewNextPosY);
 
-                        if (isPositionsOutOfRange(xViewNextPosX, xViewNextPosY)) {
-                            xView.setPosX(randomPositionX());
-                            xView.setPosY(resetPositionY());
+                        if (isPositionsOutOfRange(xView.getBitmap(), xViewNextPosX, xViewNextPosY)) {
+                            xView.setPosX(
+                                    randomPositionX(xView.getBitmap())
+                            );
+
+                            xView.setPosY(
+                                    resetPositionY(xView.getBitmap())
+                            );
                         }
 
                         if (!isRotateOff) {
@@ -264,9 +292,9 @@ public class XFallView extends View {
         };
     }
 
-    private boolean isPositionsOutOfRange(float x, float y) {
-        return (x < -xViewBitmap.getWidth() || x > viewportWidth + xViewBitmap.getWidth())
-                || y > viewportHeight + xViewBitmap.getHeight();
+    private boolean isPositionsOutOfRange(Bitmap bitmap, float x, float y) {
+        return (x < -bitmap.getWidth() || x > viewportWidth + bitmap.getWidth())
+                || y > viewportHeight + bitmap.getHeight();
     }
 
     private boolean isRotateAngleOutOfRange(int angle) {
@@ -292,13 +320,19 @@ public class XFallView extends View {
     }
 
     private void generateXViews() {
-        float pivotX = xViewBitmap.getWidth() / 2.f;
-        float pivotY = xViewBitmap.getHeight() / 2.f;
+        Bitmap bitmap;
+        float pivotX, pivotY;
 
         for (int index = 0; index < maxViewsCount; index++) {
+            bitmap = randomBitmapFromList();
+
+            pivotX = bitmap.getWidth() / 2.f;
+            pivotY = bitmap.getHeight() / 2.f;
+
             XView xView = new XView(
-                    randomPositionX(),
-                    randomPositionY(),
+                    bitmap,
+                    randomPositionX(bitmap),
+                    randomPositionY(bitmap),
                     pivotX,
                     pivotY,
                     randomVelocityY()
@@ -306,7 +340,10 @@ public class XFallView extends View {
 
             xView.setTransparency(randomTransparency());
             xView.setScale(randomScale());
-            xView.setRotateAngle(randomRotateAngle());
+
+            if (!isRotateOff) {
+                xView.setRotateAngle(randomRotateAngle());
+            }
 
             xViewsList.add(xView);
         }
@@ -328,16 +365,22 @@ public class XFallView extends View {
     // Common
     // ===========================================================
 
-    private float randomPositionX() {
-        return RandomUtil.nextFloat(viewportWidth + 2 * xViewBitmap.getWidth()) - xViewBitmap.getWidth();
+    private Bitmap randomBitmapFromList() {
+        return xViewBitmapList.get(
+                RandomUtil.nextInt(0, xViewBitmapList.size())
+        );
     }
 
-    private float randomPositionY() {
-        return RandomUtil.nextFloat(viewportHeight + 2 * xViewBitmap.getHeight()) - xViewBitmap.getHeight();
+    private float randomPositionX(Bitmap bitmap) {
+        return RandomUtil.nextFloat(viewportWidth + 2 * bitmap.getWidth()) - bitmap.getWidth();
     }
 
-    private float resetPositionY() {
-        return -xViewBitmap.getHeight();
+    private float randomPositionY(Bitmap bitmap) {
+        return RandomUtil.nextFloat(viewportHeight + 2 * bitmap.getHeight()) - bitmap.getHeight();
+    }
+
+    private float resetPositionY(Bitmap bitmap) {
+        return -bitmap.getHeight();
     }
 
     private float randomVelocityY() {
