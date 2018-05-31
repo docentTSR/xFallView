@@ -58,7 +58,7 @@ public class XFallView extends View {
     private Paint xViewPaint;
     private Matrix xViewMatrix;
 
-    private List<XView> xViewsList;
+    private List<XViewModel> xViewModelList;
 
     private Handler calculatePositionsHandler;
     private HandlerThread calculatePositionThread;
@@ -111,28 +111,29 @@ public class XFallView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        for (XView xView : xViewsList) {
+        for (XViewModel xViewModel : xViewModelList) {
             xViewMatrix.setTranslate(0, 0);
 
             if (!isRotateOff) {
                 xViewMatrix.postRotate(
-                        xView.getRotateAngle(),
-                        xView.getPivotX(), xView.getPivotY()
+                        xViewModel.getRotateAngle(),
+                        xViewModel.getPivotX(),
+                        xViewModel.getPivotY()
                 );
             }
 
             xViewMatrix.postScale(
-                    xView.getScale(), xView.getScale(),
-                    xView.getPivotX(), xView.getPivotY()
+                    xViewModel.getScale(), xViewModel.getScale(),
+                    xViewModel.getPivotX(), xViewModel.getPivotY()
             );
 
             xViewMatrix.postTranslate(
-                    xView.getPosX(), xView.getPosY()
+                    xViewModel.getPosX(), xViewModel.getPosY()
             );
 
-            xViewPaint.setColor(xView.getTransparency());
+            xViewPaint.setColor(xViewModel.getTransparency());
 
-            canvas.drawBitmap(xView.getBitmap(), xViewMatrix, xViewPaint);
+            canvas.drawBitmap(xViewModel.getBitmap(), xViewMatrix, xViewPaint);
         }
 
         calculatePositionsHandler.sendEmptyMessage(MSG_CALCULATE);
@@ -160,7 +161,7 @@ public class XFallView extends View {
 
         initCalculateHandler();
 
-        xViewsList = new ArrayList<>(maxViewsCount);
+        xViewModelList = new ArrayList<>(maxViewsCount);
 
         xViewMatrix = new Matrix();
 
@@ -257,30 +258,30 @@ public class XFallView extends View {
                 if (lastTimeMillis != INVALID_TIME) {
                     float deltaTime = (currentTimeMillis - lastTimeMillis) / 1_000.f;
 
-                    for (XView xView : xViewsList) {
-                        xViewNextPosX = xView.getPosX() + (wind > 0 ? (xView.getVelocityY() / wind) * deltaTime : 0);
-                        xViewNextPosY = xView.getPosY() + xView.getVelocityY() * deltaTime;
+                    for (XViewModel xViewModel : xViewModelList) {
+                        xViewNextPosX = xViewModel.getPosX() + (wind > 0 ? (xViewModel.getVelocityY() / wind) * deltaTime : 0);
+                        xViewNextPosY = xViewModel.getPosY() + xViewModel.getVelocityY() * deltaTime;
 
-                        xView.setPosX(xViewNextPosX);
-                        xView.setPosY(xViewNextPosY);
+                        xViewModel.setPosX(xViewNextPosX);
+                        xViewModel.setPosY(xViewNextPosY);
 
-                        if (isPositionsOutOfRange(xView.getBitmap(), xViewNextPosX, xViewNextPosY)) {
-                            xView.setPosX(
-                                    randomPositionX(xView.getBitmap())
+                        if (isPositionsOutOfRange(xViewModel.getBitmap(), xViewNextPosX, xViewNextPosY)) {
+                            xViewModel.setPosX(
+                                    randomPositionX(xViewModel.getBitmap())
                             );
 
-                            xView.setPosY(
-                                    resetPositionY(xView.getBitmap())
+                            xViewModel.setPosY(
+                                    resetPositionY(xViewModel.getBitmap())
                             );
                         }
 
                         if (!isRotateOff) {
-                            if (!isRotateAngleOutOfRange(xView.getRotateAngle())) {
-                                resetRotateAngleToValidRange(xView);
+                            if (!isRotateAngleOutOfRange(xViewModel.getRotateAngle())) {
+                                resetRotateAngleToValidRange(xViewModel);
                             }
 
-                            xView.setRotateAngle(
-                                    xView.getRotateAngle() + 1
+                            xViewModel.setRotateAngle(
+                                    xViewModel.getRotateAngle() + 1
                             );
                         }
                     }
@@ -301,9 +302,9 @@ public class XFallView extends View {
         return angle < 0 || angle > 360;
     }
 
-    private void resetRotateAngleToValidRange(XView xView) {
-        xView.setRotateAngle(
-                xView.getRotateAngle() % 360
+    private void resetRotateAngleToValidRange(XViewModel xViewModel) {
+        xViewModel.setRotateAngle(
+                xViewModel.getRotateAngle() % 360
         );
     }
 
@@ -316,7 +317,7 @@ public class XFallView extends View {
     }
 
     private boolean isXFallInited() {
-        return !xViewsList.isEmpty();
+        return !xViewModelList.isEmpty();
     }
 
     private void generateXViews() {
@@ -329,7 +330,7 @@ public class XFallView extends View {
             pivotX = bitmap.getWidth() / 2.f;
             pivotY = bitmap.getHeight() / 2.f;
 
-            XView xView = new XView(
+            XViewModel xViewModel = new XViewModel(
                     bitmap,
                     randomPositionX(bitmap),
                     randomPositionY(bitmap),
@@ -338,14 +339,14 @@ public class XFallView extends View {
                     randomVelocityY()
             );
 
-            xView.setTransparency(randomTransparency());
-            xView.setScale(randomScale());
+            xViewModel.setTransparency(randomTransparency());
+            xViewModel.setScale(randomScale());
 
             if (!isRotateOff) {
-                xView.setRotateAngle(randomRotateAngle());
+                xViewModel.setRotateAngle(randomRotateAngle());
             }
 
-            xViewsList.add(xView);
+            xViewModelList.add(xViewModel);
         }
     }
 
