@@ -29,6 +29,8 @@ public class XFallView extends View {
 
     private static final int MSG_CALCULATE = 0;
 
+    private static final int INVALID_RESOURCE_ID = -1;
+
     private static final long INVALID_TIME = Long.MIN_VALUE;
 
     private static final int DEFAULT_MAX_VIEWS_COUNT = 50;
@@ -153,7 +155,7 @@ public class XFallView extends View {
             return;
         }
 
-        initByAttr(attrs);
+        parseAttributes(attrs);
 
         lastTimeMillis = INVALID_TIME;
 
@@ -168,7 +170,7 @@ public class XFallView extends View {
         xViewPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
 
-    private void initByAttr(AttributeSet attrs) {
+    private void parseAttributes(AttributeSet attrs) {
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.XFallView);
 
         maxViewsCount = array.getInt(R.styleable.XFallView_maxViewsCount, DEFAULT_MAX_VIEWS_COUNT);
@@ -181,36 +183,47 @@ public class XFallView extends View {
 
         wind = array.getInt(R.styleable.XFallView_wind, DEFAULT_WIND);
 
-        final int INVALID_RESOURCE_ID = -1;
+        isRotateOff = array.getInt(R.styleable.XFallView_rotate, DEFAULT_ROTATE_OFF) == 1;
+
+        parseScaleFromAttributes(array);
+
+        parseDrawableFromAttributes(array);
+
+        array.recycle();
+    }
+
+    private void parseScaleFromAttributes(TypedArray array) {
+        TypedValue typedValue = new TypedValue();
 
         final int minScaleResId = array.getResourceId(R.styleable.XFallView_minScale, INVALID_RESOURCE_ID);
-
         if (minScaleResId != INVALID_RESOURCE_ID) {
-            TypedValue minScaleValue = new TypedValue();
-            getResources().getValue(minScaleResId, minScaleValue, true);
-            minScale = minScaleValue.getFloat();
+
+            getResources().getValue(minScaleResId, typedValue, true);
+
+            minScale = typedValue.getFloat();
 
         } else {
             minScale = DEFAULT_MIN_SCALE;
         }
 
         final int maxScaleResId = array.getResourceId(R.styleable.XFallView_maxScale, INVALID_RESOURCE_ID);
-
         if (maxScaleResId != INVALID_RESOURCE_ID) {
-            TypedValue maxScaleValue = new TypedValue();
-            getResources().getValue(maxScaleResId, maxScaleValue, true);
-            maxScale = maxScaleValue.getFloat();
+
+            getResources().getValue(maxScaleResId, typedValue, true);
+
+            maxScale = typedValue.getFloat();
 
         } else {
             maxScale = DEFAULT_MAX_SCALE;
         }
+    }
 
-        isRotateOff = array.getInt(R.styleable.XFallView_rotate, DEFAULT_ROTATE_OFF) == 1;
-
+    private void parseDrawableFromAttributes(TypedArray array) {
         xViewBitmapList = new ArrayList<>();
-        final int bitmapArrayResId = array.getResourceId(R.styleable.XFallView_srcArray, INVALID_RESOURCE_ID);
 
+        final int bitmapArrayResId = array.getResourceId(R.styleable.XFallView_srcArray, INVALID_RESOURCE_ID);
         if (bitmapArrayResId != INVALID_RESOURCE_ID) {
+
             TypedArray bitmapResIdArray = getResources().obtainTypedArray(bitmapArrayResId);
 
             int bitmapResId;
@@ -218,26 +231,26 @@ public class XFallView extends View {
             for (int i = 0; i < bitmapResIdArray.length(); i++) {
                 bitmapResId = bitmapResIdArray.getResourceId(i, INVALID_RESOURCE_ID);
 
-                if (bitmapResId != INVALID_RESOURCE_ID) {
-                    xViewBitmapList.add(
-                            BitmapFactory.decodeResource(
-                                    getResources(), bitmapResId
-                            )
-                    );
+                if (bitmapResId == INVALID_RESOURCE_ID) {
+                    continue;
                 }
+
+                xViewBitmapList.add(
+                        BitmapFactory.decodeResource(
+                                getResources(), bitmapResId
+                        )
+                );
             }
 
             bitmapResIdArray.recycle();
 
             if (xViewBitmapList.isEmpty()) {
-                throw new IllegalStateException("You must set valid 'app:srcArray' attribute for XFallView...");
+                throw new IllegalStateException("You must set valid 'app:srcArray' attribute for XFallView");
             }
 
         } else {
-            throw new IllegalStateException("You must set 'app:srcArray' attribute for XFallView...");
+            throw new IllegalStateException("You must set 'app:srcArray' attribute for XFallView");
         }
-
-        array.recycle();
     }
 
     private void initCalculateThread() {
