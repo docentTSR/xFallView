@@ -1,4 +1,4 @@
-package com.docenttsr.views.xfallview.Utils;
+package com.docenttsr.xfallview.utils;
 
 import android.content.Context;
 
