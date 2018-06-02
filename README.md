@@ -26,6 +26,7 @@ Optimization tips
 Tasks list
 ----------
 - [x] :eyes: random alpha for xViews;
+- [x] :rocket: random speed for xViews;
 - [x] :mag: random scale for xViews;
 - [x] :dash: wind for xViews;
 - [x] :cyclone: rotate for xViews;
