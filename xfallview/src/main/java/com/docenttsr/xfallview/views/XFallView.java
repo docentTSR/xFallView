@@ -1,4 +1,4 @@
-package com.docenttsr.xfallview.views;
+package com.docentTSR.xFallView.views;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -16,10 +16,10 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.docenttsr.xfallview.R;
-import com.docenttsr.xfallview.models.XViewModel;
-import com.docenttsr.xfallview.utils.DisplayUtils;
-import com.docenttsr.xfallview.utils.RandomUtil;
+import com.docentTSR.xFallView.R;
+import com.docentTSR.xFallView.models.XViewModel;
+import com.docentTSR.xFallView.utils.DisplayUtils;
+import com.docentTSR.xFallView.utils.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;

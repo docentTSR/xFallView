@@ -1,4 +1,4 @@
-package com.docenttsr.xfallview.models;
+package com.docentTSR.xFallView.models;
 
 
 import android.graphics.Bitmap;

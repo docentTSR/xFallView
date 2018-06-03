@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.docenttsr.xfallview.views.XFallView;
+import com.docentTSR.xFallView.views.XFallView;
 
 
 public class TestActivity extends AppCompatActivity {

@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     >
 
-    <com.docenttsr.xfallview.views.XFallView
+    <com.docentTSR.xFallView.views.XFallView
         android:id="@+id/test_xfall_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
