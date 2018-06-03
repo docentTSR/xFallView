@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
+def version_name = '0.9.1'
+
 ext {
 
     bintrayRepo = 'views'
@@ -13,9 +15,9 @@ ext {
     libraryDescription = 'Android library for drawing views like fallview'
 
     siteUrl = 'https://github.com/docentTSR/xFallView'
-    gitUrl = 'https://github.com/docentTSR/xFallView'
+    gitUrl = 'https://github.com/docentTSR/xFallView.git'
 
-    libraryVersion = '0.9.0'
+    libraryVersion = version_name
 
     developerId = 'docentTSR'
     developerName = 'Anton Savenok'
@@ -37,7 +39,7 @@ android {
         targetSdkVersion 27
 
         versionCode 1
-        versionName "1.0"
+        versionName version_name
 
     }
 
