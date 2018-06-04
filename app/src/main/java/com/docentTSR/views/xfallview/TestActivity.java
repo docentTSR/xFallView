@@ -36,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
                 xFallView.startFall();
 
                 xFallView.animate()
-                        .setDuration(500)
+                        .setDuration(1_500)
                         .alpha(1)
                         .start();
             }
