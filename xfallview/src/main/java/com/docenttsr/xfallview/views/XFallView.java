@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 
 import com.docentTSR.xFallView.R;
@@ -47,8 +46,8 @@ public class XFallView extends View {
 
     private static final int DEFAULT_ROTATE_OFF = 1;
 
-    private static final float DEFAULT_MIN_SCALE = .5f;
-    private static final float DEFAULT_MAX_SCALE = 1.2f;
+    private static final int DEFAULT_MIN_SCALE = 50;
+    private static final int DEFAULT_MAX_SCALE = 100;
 
     private int viewportWidth;
     private int viewportHeight;
@@ -195,29 +194,17 @@ public class XFallView extends View {
     }
 
     private void parseScaleFromAttributes(TypedArray array) {
-        TypedValue typedValue = new TypedValue();
-
-        final int minScaleResId = array.getResourceId(R.styleable.XFallView_minScale, INVALID_RESOURCE_ID);
-        if (minScaleResId != INVALID_RESOURCE_ID) {
-
-            getResources().getValue(minScaleResId, typedValue, true);
-
-            minScale = typedValue.getFloat();
-
-        } else {
-            minScale = DEFAULT_MIN_SCALE;
+        int minScaleFormAttr = array.getInt(R.styleable.XFallView_minScale, DEFAULT_MIN_SCALE);
+        if (minScaleFormAttr == 0) {
+            minScaleFormAttr = DEFAULT_MIN_SCALE;
         }
+        minScale = (float) minScaleFormAttr / 100;
 
-        final int maxScaleResId = array.getResourceId(R.styleable.XFallView_maxScale, INVALID_RESOURCE_ID);
-        if (maxScaleResId != INVALID_RESOURCE_ID) {
-
-            getResources().getValue(maxScaleResId, typedValue, true);
-
-            maxScale = typedValue.getFloat();
-
-        } else {
-            maxScale = DEFAULT_MAX_SCALE;
+        int maxScaleFormAttr = array.getInt(R.styleable.XFallView_maxScale, DEFAULT_MAX_SCALE);
+        if (maxScaleFormAttr == 0) {
+            maxScaleFormAttr = DEFAULT_MAX_SCALE;
         }
+        maxScale = (float) maxScaleFormAttr / 100;
     }
 
     private void parseDrawableFromAttributes(TypedArray array) {

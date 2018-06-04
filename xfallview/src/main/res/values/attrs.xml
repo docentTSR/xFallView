@@ -11,8 +11,8 @@
         <attr name="minAlpha" format="integer" />
         <attr name="maxAlpha" format="integer" />
 
-        <attr name="minScale" format="reference" />
-        <attr name="maxScale" format="reference" />
+        <attr name="minScale" format="integer" />
+        <attr name="maxScale" format="integer" />
 
         <attr name="srcArray" format="reference" />
 
