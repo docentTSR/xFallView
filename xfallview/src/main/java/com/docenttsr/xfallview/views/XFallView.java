@@ -158,10 +158,7 @@ public class XFallView extends View {
 
         parseAttributes(attrs);
 
-        lastTimeMillis = INVALID_TIME;
-
         initCalculateThread();
-
         initCalculateHandler();
 
         xViewModelList = new ArrayList<>(maxViewsCount);
@@ -208,7 +205,7 @@ public class XFallView extends View {
     }
 
     private void parseDrawableFromAttributes(TypedArray array) {
-        xViewBitmapList = new ArrayList<>();
+        xViewBitmapList = new ArrayList<>(maxViewsCount);
 
         final int bitmapArrayResId = array.getResourceId(R.styleable.XFallView_srcArray, INVALID_RESOURCE_ID);
         if (bitmapArrayResId != INVALID_RESOURCE_ID) {
@@ -250,6 +247,8 @@ public class XFallView extends View {
     }
 
     private void initCalculateHandler() {
+        lastTimeMillis = INVALID_TIME;
+
         calculatePositionsHandler = new Handler(calculatePositionThread.getLooper()) {
             @Override
             public void handleMessage(Message msg) {
@@ -264,9 +263,6 @@ public class XFallView extends View {
                         xViewNextPosX = xViewModel.getPosX() + (wind > 0 ? (xViewModel.getSpeedY() / wind) * deltaTime : 0);
                         xViewNextPosY = xViewModel.getPosY() + xViewModel.getSpeedY() * deltaTime;
 
-                        xViewModel.setPosX(xViewNextPosX);
-                        xViewModel.setPosY(xViewNextPosY);
-
                         if (isPositionsOutOfRange(xViewModel.getBitmap(), xViewNextPosX, xViewNextPosY)) {
                             xViewModel.setPosX(
                                     randomPositionX(xViewModel.getBitmap())
@@ -275,6 +271,9 @@ public class XFallView extends View {
                             xViewModel.setPosY(
                                     resetPositionY(xViewModel.getBitmap())
                             );
+                        } else {
+                            xViewModel.setPosX(xViewNextPosX);
+                            xViewModel.setPosY(xViewNextPosY);
                         }
 
                         if (!isRotateOff) {
@@ -311,26 +310,24 @@ public class XFallView extends View {
     }
 
     public void startFall() {
-        if (!isXFallInited()) {
-            generateXViews();
+        if (!isXFallInitialized()) {
+            generateXViewModels();
         }
-
-        setVisibility(VISIBLE);
     }
 
-    private boolean isXFallInited() {
+    private boolean isXFallInitialized() {
         return !xViewModelList.isEmpty();
     }
 
-    private void generateXViews() {
+    private void generateXViewModels() {
         Bitmap bitmap;
         float pivotX, pivotY;
 
         for (int index = 0; index < maxViewsCount; index++) {
             bitmap = randomBitmapFromList();
 
-            pivotX = bitmap.getWidth() / 2.f;
-            pivotY = bitmap.getHeight() / 2.f;
+            pivotX = (float) bitmap.getWidth() / 2.f;
+            pivotY = (float) bitmap.getHeight() / 2.f;
 
             XViewModel xViewModel = new XViewModel(
                     bitmap,
@@ -353,8 +350,6 @@ public class XFallView extends View {
     }
 
     public void stopFall() {
-        setVisibility(INVISIBLE);
-
         lastTimeMillis = INVALID_TIME;
 
         notifyCalculateThreadStop();
