@@ -3,7 +3,7 @@
 
     <declare-styleable name="XFallView">
 
-        <attr name="maxViewsCount" format="integer" />
+        <attr name="viewsCount" format="integer" />
 
         <attr name="minSpeed" format="integer" />
         <attr name="maxSpeed" format="integer" />

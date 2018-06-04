@@ -34,7 +34,7 @@ public class XFallView extends View {
 
     private static final long INVALID_TIME = Long.MIN_VALUE;
 
-    private static final int DEFAULT_MAX_VIEWS_COUNT = 50;
+    private static final int DEFAULT_VIEWS_COUNT = 50;
 
     private static final int DEFAULT_MIN_SPEED_Y = 50;
     private static final int DEFAULT_MAX_SPEED_Y = 3 * DEFAULT_MIN_SPEED_Y;
@@ -70,7 +70,7 @@ public class XFallView extends View {
     // Attrs
     // ===========================================================
 
-    private int maxViewsCount;
+    private int viewsCount;
     private int minSpeed;
     private int maxSpeed;
     private int minAlpha;
@@ -161,7 +161,7 @@ public class XFallView extends View {
         initCalculateThread();
         initCalculateHandler();
 
-        xViewModelList = new ArrayList<>(maxViewsCount);
+        xViewModelList = new ArrayList<>(viewsCount);
 
         xViewMatrix = new Matrix();
 
@@ -171,7 +171,7 @@ public class XFallView extends View {
     private void parseAttributes(AttributeSet attrs) {
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.XFallView);
 
-        maxViewsCount = array.getInt(R.styleable.XFallView_maxViewsCount, DEFAULT_MAX_VIEWS_COUNT);
+        viewsCount = array.getInt(R.styleable.XFallView_viewsCount, DEFAULT_VIEWS_COUNT);
 
         minSpeed = array.getInt(R.styleable.XFallView_minSpeed, DEFAULT_MIN_SPEED_Y);
         maxSpeed = array.getInt(R.styleable.XFallView_maxSpeed, DEFAULT_MAX_SPEED_Y);
@@ -205,7 +205,7 @@ public class XFallView extends View {
     }
 
     private void parseDrawableFromAttributes(TypedArray array) {
-        xViewBitmapList = new ArrayList<>(maxViewsCount);
+        xViewBitmapList = new ArrayList<>(viewsCount);
 
         final int bitmapArrayResId = array.getResourceId(R.styleable.XFallView_srcArray, INVALID_RESOURCE_ID);
         if (bitmapArrayResId != INVALID_RESOURCE_ID) {
@@ -323,7 +323,7 @@ public class XFallView extends View {
         Bitmap bitmap;
         float pivotX, pivotY;
 
-        for (int index = 0; index < maxViewsCount; index++) {
+        for (int index = 0; index < viewsCount; index++) {
             bitmap = randomBitmapFromList();
 
             pivotX = (float) bitmap.getWidth() / 2.f;

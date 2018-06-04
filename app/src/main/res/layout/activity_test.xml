@@ -11,7 +11,7 @@
         android:id="@+id/test_xfall_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:maxViewsCount="80"
+        app:viewsCount="80"
         app:minSpeed="60"
         app:maxSpeed="95"
         app:minAlpha="10"
@@ -27,7 +27,7 @@
         <!--android:id="@+id/test_xfall_view"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
-        <!--app:maxViewsCount="100"-->
+        <!--app:viewsCount="100"-->
         <!--app:minSpeed="70"-->
         <!--app:maxSpeed="100"-->
         <!--app:minAlpha="5"-->
@@ -42,7 +42,7 @@
         <!--android:id="@+id/test_xfall_view"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
-        <!--app:maxViewsCount="70"-->
+        <!--app:viewsCount="70"-->
         <!--app:minSpeed="80"-->
         <!--app:maxSpeed="110"-->
         <!--app:minAlpha="20"-->
