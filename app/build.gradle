@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.docenttsr.views.xfallview"
 
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 27
 
         versionCode 1
