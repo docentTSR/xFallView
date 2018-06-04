@@ -36,8 +36,8 @@ public class XFallView extends View {
 
     private static final int DEFAULT_MAX_VIEWS_COUNT = 50;
 
-    private static final int DEFAULT_MIN_VELOCITY_Y = 50;
-    private static final int DEFAULT_MAX_VELOCITY_Y = 3 * DEFAULT_MIN_VELOCITY_Y;
+    private static final int DEFAULT_MIN_SPEED_Y = 50;
+    private static final int DEFAULT_MAX_SPEED_Y = 3 * DEFAULT_MIN_SPEED_Y;
 
     private static final int DEFAULT_MIN_ALPHA = 10;
     private static final int DEFAULT_MAX_ALPHA = 255;
@@ -71,8 +71,8 @@ public class XFallView extends View {
     // ===========================================================
 
     private int maxViewsCount;
-    private int minVelocity;
-    private int maxVelocity;
+    private int minSpeed;
+    private int maxSpeed;
     private int minAlpha;
     private int maxAlpha;
     private float wind;
@@ -176,8 +176,8 @@ public class XFallView extends View {
 
         maxViewsCount = array.getInt(R.styleable.XFallView_maxViewsCount, DEFAULT_MAX_VIEWS_COUNT);
 
-        minVelocity = array.getInt(R.styleable.XFallView_minVelocity, DEFAULT_MIN_VELOCITY_Y);
-        maxVelocity = array.getInt(R.styleable.XFallView_maxVelocity, DEFAULT_MAX_VELOCITY_Y);
+        minSpeed = array.getInt(R.styleable.XFallView_minSpeed, DEFAULT_MIN_SPEED_Y);
+        maxSpeed = array.getInt(R.styleable.XFallView_maxSpeed, DEFAULT_MAX_SPEED_Y);
 
         minAlpha = array.getInt(R.styleable.XFallView_minAlpha, DEFAULT_MIN_ALPHA);
         maxAlpha = array.getInt(R.styleable.XFallView_maxAlpha, DEFAULT_MAX_ALPHA);
@@ -261,8 +261,8 @@ public class XFallView extends View {
                     float deltaTime = (currentTimeMillis - lastTimeMillis) / 1_000.f;
 
                     for (XViewModel xViewModel : xViewModelList) {
-                        xViewNextPosX = xViewModel.getPosX() + (wind > 0 ? (xViewModel.getVelocityY() / wind) * deltaTime : 0);
-                        xViewNextPosY = xViewModel.getPosY() + xViewModel.getVelocityY() * deltaTime;
+                        xViewNextPosX = xViewModel.getPosX() + (wind > 0 ? (xViewModel.getSpeedY() / wind) * deltaTime : 0);
+                        xViewNextPosY = xViewModel.getPosY() + xViewModel.getSpeedY() * deltaTime;
 
                         xViewModel.setPosX(xViewNextPosX);
                         xViewModel.setPosY(xViewNextPosY);
@@ -338,7 +338,7 @@ public class XFallView extends View {
                     randomPositionY(bitmap),
                     pivotX,
                     pivotY,
-                    randomVelocityY()
+                    randomSpeedY()
             );
 
             xViewModel.setTransparency(randomTransparency());
@@ -386,10 +386,10 @@ public class XFallView extends View {
         return -bitmap.getHeight();
     }
 
-    private float randomVelocityY() {
+    private float randomSpeedY() {
         return RandomUtil.nextFloat(
-                DisplayUtils.dpToPx(getContext(), minVelocity),
-                DisplayUtils.dpToPx(getContext(), maxVelocity)
+                DisplayUtils.dpToPx(getContext(), minSpeed),
+                DisplayUtils.dpToPx(getContext(), maxSpeed)
         );
     }
 

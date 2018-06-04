@@ -14,7 +14,7 @@ public class XViewModel {
     private float pivotX;
     private float pivotY;
 
-    private float velocityY;
+    private float speedY;
 
     private float scale;
 
@@ -22,13 +22,13 @@ public class XViewModel {
 
     private int transparency;
 
-    public XViewModel(Bitmap bitmap, float posX, float posY, float pivotX, float pivotY, float velocityY) {
+    public XViewModel(Bitmap bitmap, float posX, float posY, float pivotX, float pivotY, float speedY) {
         this.bitmap = bitmap;
         this.posX = posX;
         this.posY = posY;
         this.pivotX = pivotX;
         this.pivotY = pivotY;
-        this.velocityY = velocityY;
+        this.speedY = speedY;
     }
 
     public Bitmap getBitmap() {
@@ -67,12 +67,12 @@ public class XViewModel {
         this.pivotY = pivotY;
     }
 
-    public float getVelocityY() {
-        return velocityY;
+    public float getSpeedY() {
+        return speedY;
     }
 
-    public void setVelocityY(float velocityY) {
-        this.velocityY = velocityY;
+    public void setSpeedY(float speedY) {
+        this.speedY = speedY;
     }
 
     public float getScale() {

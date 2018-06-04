@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:maxViewsCount="80"
-        app:minVelocity="60"
-        app:maxVelocity="95"
+        app:minSpeed="60"
+        app:maxSpeed="95"
         app:minAlpha="10"
         app:maxAlpha="255"
         app:minScale="30"
@@ -28,14 +28,14 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--app:maxViewsCount="100"-->
-        <!--app:minVelocity="70"-->
-        <!--app:maxVelocity="100"-->
+        <!--app:minSpeed="70"-->
+        <!--app:maxSpeed="100"-->
         <!--app:minAlpha="5"-->
         <!--app:maxAlpha="230"-->
         <!--app:minScale="50"-->
         <!--app:maxScale="80"-->
-        <!--app:srcArray="@array/x_views_currency_array"-->
         <!--app:rotate="on"-->
+        <!--app:srcArray="@array/x_views_currency_array"-->
         <!--/>-->
 
     <!--<com.docentTSR.xFallView.views.XFallView-->
@@ -43,8 +43,8 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--app:maxViewsCount="70"-->
-        <!--app:minVelocity="80"-->
-        <!--app:maxVelocity="110"-->
+        <!--app:minSpeed="80"-->
+        <!--app:maxSpeed="110"-->
         <!--app:minAlpha="20"-->
         <!--app:maxAlpha="240"-->
         <!--app:minScale="60"-->

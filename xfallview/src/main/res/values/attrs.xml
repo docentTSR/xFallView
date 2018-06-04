@@ -5,8 +5,8 @@
 
         <attr name="maxViewsCount" format="integer" />
 
-        <attr name="minVelocity" format="integer" />
-        <attr name="maxVelocity" format="integer" />
+        <attr name="minSpeed" format="integer" />
+        <attr name="maxSpeed" format="integer" />
 
         <attr name="minAlpha" format="integer" />
         <attr name="maxAlpha" format="integer" />
