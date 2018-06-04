@@ -205,7 +205,7 @@ public class XFallView extends View {
     }
 
     private void parseDrawableFromAttributes(TypedArray array) {
-        xViewBitmapList = new ArrayList<>(viewsCount);
+        xViewBitmapList = new ArrayList<>();
 
         final int bitmapArrayResId = array.getResourceId(R.styleable.XFallView_srcArray, INVALID_RESOURCE_ID);
         if (bitmapArrayResId != INVALID_RESOURCE_ID) {
