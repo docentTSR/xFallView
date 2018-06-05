@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-def version_name = '0.9.2'
+def version_name = '0.9.3'
 
 ext {
 
