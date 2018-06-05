@@ -18,7 +18,7 @@
         app:maxAlpha="255"
         app:minScale="30"
         app:maxScale="60"
-        app:wind="low"
+        app:wind="slight"
         app:rotate="on"
         app:srcArray="@array/x_views_snowflake_array"
         />

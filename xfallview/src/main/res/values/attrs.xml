@@ -17,9 +17,9 @@
         <attr name="srcArray" format="reference" />
 
         <attr name="wind" format="enum">
-            <enum name="low" value="10" />
+            <enum name="slight" value="10" />
             <enum name="normal" value="6" />
-            <enum name="high" value="3" />
+            <enum name="strong" value="3" />
         </attr>
 
         <attr name="rotate" format="enum">
