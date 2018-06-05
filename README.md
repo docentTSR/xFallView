@@ -14,7 +14,7 @@ repositories {
 }
    
 dependencies {
-    implementation 'com.github.docentTSR:xFallView:0.9.0'
+    implementation 'com.github.docentTSR:xFallView:0.9.3'
 }
 ```
 
