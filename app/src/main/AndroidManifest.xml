@@ -29,6 +29,11 @@
             android:name=".ToolbarActivity"
             />
 
+        <activity
+            android:name=".FlexibleToolbarActivity"
+            android:theme="@style/AppTheme.TransparentTheme"
+            />
+
     </application>
 
 </manifest>

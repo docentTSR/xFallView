@@ -32,6 +32,14 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(new Intent(v.getContext(), ToolbarActivity.class));
             }
         });
+
+        View snowfallFlexibleToolbarActionView = findViewById(R.id.snowfall_flexible_toolbar_action_view);
+        snowfallFlexibleToolbarActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), FlexibleToolbarActivity.class));
+            }
+        });
     }
 
 }
