@@ -41,8 +41,9 @@
                 app:minAlpha="10"
                 app:maxAlpha="255"
                 app:minScale="20"
-                app:maxScale="35"
+                app:maxScale="40"
                 app:rotate="on"
+                app:wind="slight"
                 app:srcArray="@array/x_views_snowflake_array"
                 />
         </android.support.design.widget.CollapsingToolbarLayout>
