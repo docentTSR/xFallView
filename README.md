@@ -6,6 +6,8 @@ xFallView
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Apk](https://img.shields.io/badge/APK-Download-green.svg)](https://github.com/docentTSR/xFallView/blob/master/custom_res/xFallView.apk)
 
+![Currencyfall](/custom_res/usd.gif) ![Flexible toolbar](/custom_res/flexible-toolbar.gif)
+
 Setup
 -----
 ```groovy
