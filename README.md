@@ -4,7 +4,7 @@ xFallView
 [![Download](https://api.bintray.com/packages/docenttsr/views/xFallView/images/download.svg)](https://bintray.com/docenttsr/views/xFallView/_latestVersion)
 [![Api](https://img.shields.io/badge/API-14+-blue.svg)](https://github.com/docentTSR/xFallView)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Apk](https://img.shields.io/badge/APK-Download-green.svg)](https://github.com/docentTSR/xFallView)
+[![Apk](https://img.shields.io/badge/APK-Download-green.svg)](https://github.com/docentTSR/xFallView/blob/master/custom_res/xFallView.apk)
 
 Setup
 -----
@@ -63,7 +63,6 @@ app:rotate | `on`, `off` | `off` | rotate option for all views
 
 Optimization tips
 -----------------
-* use optimized views count for x-fallview;
 * use optimized drawable resources. For example, use [ImageOptim](https://imageoptim.com/mac);
 * use drawables for each screen density `mdpi`, `hdpi`, `xhdpi`, `xxhdpi`. 
 
