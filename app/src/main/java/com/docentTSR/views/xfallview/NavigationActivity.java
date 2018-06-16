@@ -25,6 +25,30 @@ public class NavigationActivity extends AppCompatActivity {
             }
         });
 
+        View heartfallActionView = findViewById(R.id.heartfall_action_view);
+        heartfallActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), HeartfallActivity.class));
+            }
+        });
+
+        View usdfallActionView = findViewById(R.id.usdfall_action_view);
+        usdfallActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), UsdfallActivity.class));
+            }
+        });
+
+        View currencyfallActionView = findViewById(R.id.currencyfall_action_view);
+        currencyfallActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), CurrencyfallActivity.class));
+            }
+        });
+
         View snowfallToolbarActionView = findViewById(R.id.snowfall_toolbar_action_view);
         snowfallToolbarActionView.setOnClickListener(new View.OnClickListener() {
             @Override

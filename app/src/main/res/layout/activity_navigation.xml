@@ -1,44 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="20dp"
-    tools:context="com.docentTSR.views.xfallview.NavigationActivity"
+    android:fillViewport="true"
     >
 
-    <Button
-        android:id="@+id/snowfall_action_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Snowfall"
-        />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        >
 
-    <android.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        />
+        <Button
+            android:id="@+id/snowfall_action_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Snowfall"
+            />
 
-    <Button
-        android:id="@+id/snowfall_toolbar_action_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Snowfall with Toolbar"
-        />
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            />
 
-    <android.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        />
+        <Button
+            android:id="@+id/heartfall_action_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Heartfall"
+            />
 
-    <Button
-        android:id="@+id/snowfall_flexible_toolbar_action_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Snowfall with Flexible Toolbar"
-        />
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/usdfall_action_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usdfall"
+            />
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            />
+
+        <Button
+            android:id="@+id/currencyfall_action_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Currencyfall"
+            />
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            />
+
+        <Button
+            android:id="@+id/snowfall_toolbar_action_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Snowfall with Toolbar"
+            />
+
+        <android.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            />
+
+        <Button
+            android:id="@+id/snowfall_flexible_toolbar_action_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Snowfall with Flexible Toolbar"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

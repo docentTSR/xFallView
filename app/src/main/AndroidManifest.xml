@@ -26,6 +26,18 @@
             />
 
         <activity
+            android:name=".HeartfallActivity"
+            />
+
+        <activity
+            android:name=".UsdfallActivity"
+            />
+
+        <activity
+            android:name=".CurrencyfallActivity"
+            />
+
+        <activity
             android:name=".ToolbarActivity"
             />
 
